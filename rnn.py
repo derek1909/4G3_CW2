@@ -83,6 +83,7 @@ class RNNModel(torch.nn.Module):
         
         elif self.model_type == 2:
             # Model 2: Random symmetric connectivity.
+            torch.manual_seed(41)
             tildeW = torch.randn((self.n, self.n), dtype=torch.float32, device=self.device)
             W_unscl = tildeW + tildeW.t()
             W = self.scale_W(W_unscl, self.alpha)
